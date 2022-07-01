@@ -24,13 +24,12 @@ class MyWindow:
         self.name=Entry(bd=3)
         self.phone=Entry()
         self.t3=Entry()
-        self.btn1 = Button(win, text='upload')
-        self.btn2=Button(win, text='delete')
+        self.btn1 = Button(win, text='Subscribe')
         self.lbl1.place(x=100, y=50)
         self.name.place(x=200, y=50)
         self.lbl2.place(x=100, y=100)
         self.phone.place(x=200, y=100)
-        self.b1=Button(win, text='add to google sheet', command=self.upload)
+        self.b1=Button(win, text='Subscribe', command=self.upload)
         
         self.b1.place(x=200, y=150)
         self.lbl3.place(x=100, y=200)
@@ -44,10 +43,12 @@ class MyWindow:
 
         wks= sh.worksheet("data")
     
-        wks.append_row([str(wks.row_count),self.name.get(),self.phone.get()])
+        wks.append_row([
+            # str(wks.row_count),
+            self.name.get(),
+            self.phone.get()
+            ])
         self.t3.insert(END, 'uploaded')
-    
-    
     
 
 window=Tk()
