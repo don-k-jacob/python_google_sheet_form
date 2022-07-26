@@ -18,6 +18,7 @@ from tkinter import *
 class MyWindow:
    
     def __init__(self, win):
+        self.mywin=win
         self.lbl1=Label(win, text='name')
         self.lbl2=Label(win, text='phone')
         self.lbl3=Label(win, text='status')
@@ -30,11 +31,15 @@ class MyWindow:
         self.lbl2.place(x=100, y=100)
         self.phone.place(x=200, y=100)
         self.b1=Button(win, text='Subscribe', command=self.upload)
+        self.b2=Button(win, text='Home', command=self.home)
         
         self.b1.place(x=200, y=150)
+        self.b2.place(x=200, y=250)
         self.lbl3.place(x=100, y=200)
         self.t3.place(x=200, y=200)
-    
+    def home(self):
+        self.mywin.destroy()
+        import home
     def upload(self):
 
         sa = gspread.service_account()

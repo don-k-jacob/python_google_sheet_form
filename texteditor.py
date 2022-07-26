@@ -7,7 +7,7 @@ from tkinter.filedialog import askopenfilename, asksaveasfilename
 URL = "https://graph.facebook.com/v13.0/106016945487115/messages"
 
 head={
-    "Authorization":"Bearer EAAIZAYYHsUXIBAF2zofyFoQNZAmytNzFDJ8PKf0EQVVjYWXsKplZAi09KLhOlHPMwWiCZAPiZBP3Lxj9EtpjJxIx8CHDHOv2BY5dwXuIkvOLiQPapeZAlln3cMo9t202QeT6UGyDxW0cYj3nqFDuG41DjnEh66jYWYo7ZCuo8RcZA21c4XZABRuUrrfKIzNSi9hR29J4xPcjLRcEJnm1qzuYBL4qRfiVZBorEZD",
+    "Authorization":"Bearer EAAIZAYYHsUXIBAJ4OOVU0aNbAlTmo16tODkNGrgW0KLZAfWCbcOGiAVwHNdZCEcrsWMzhcsv63sOHRb33WFaHqSTfykZAxYJ17E8eTpbZBoR4yPD9ZCdQP4pAIS8aAu0QPn3N4A0GbxT9EG8JLVoc5zZBxivCChbKn87HAUJrju62g9kLRx9ZByUL7WLbogB5ZAUYdGjcvmuZA5xQWjMdgP91sZC5swMi9IlxYZD",
     "Content-Type":"application/json"
 }
 
@@ -44,7 +44,9 @@ def send_mail():
     sh = sa.open("PythonNewsLetter")
     wks= sh.worksheet("data")
     values_list = wks.col_values(2)
-    for x in range(wks.row_count-1):
+    for x in range(wks.row_count):
+       if (wks.row_count==0):
+          break
        print(values_list[x])
        BODY ={
        "messaging_product": "whatsapp",
@@ -66,17 +68,23 @@ window = tk.Tk()
 window.title("Text Editor Application")
 window.rowconfigure(0, minsize=800, weight=1)
 window.columnconfigure(1, minsize=800, weight=1)
-
+def home():
+    window.destroy()
+    import home
 txt_edit = tk.Text(window)
 fr_buttons = tk.Frame(window, relief=tk.RAISED, bd=2)
 btn_open = tk.Button(fr_buttons, text="Open", command=open_file)
 btn_save = tk.Button(fr_buttons, text="Save As...", command=save_file)
 btn_send = tk.Button(fr_buttons, text="Send", command=send_mail)
+btn_home = tk.Button(fr_buttons, text="home", command=home)
+
 
 
 btn_open.grid(row=0, column=0, sticky="ew", padx=5, pady=5)
 btn_save.grid(row=1, column=0, sticky="ew", padx=5)
 btn_send.grid(row=2, column=0, sticky="ew", padx=5)
+btn_home.grid(row=3, column=0, sticky="ew", padx=5)
+
 
 
 fr_buttons.grid(row=0, column=0, sticky="ns")
